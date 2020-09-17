@@ -52,7 +52,9 @@ namespace MediaBrowser.MediaEncoding.Encoder
             "mpeg4_opencl",
             "vp8_opencl",
             "vp9_opencl",
-            "vc1_opencl"
+            "vc1_opencl",
+            "h264_rkmpp",
+            "hevc_rkmpp"
         };
 
         private static readonly string[] requiredEncoders = new[]
@@ -82,7 +84,9 @@ namespace MediaBrowser.MediaEncoding.Encoder
             "hevc_omx",
             "h264_v4l2m2m",
             "h264_videotoolbox",
-            "hevc_videotoolbox"
+            "hevc_videotoolbox",
+            "h264_rkmpp",
+            "hevc_rkmpp"
         };
 
         // Try and use the individual library versions to determine a FFmpeg version
@@ -110,7 +114,7 @@ namespace MediaBrowser.MediaEncoding.Encoder
             _encoderPath = encoderPath;
         }
 
-        public static Version MinVersion { get; } = new Version(4, 0);
+        public static Version MinVersion { get; } = null;
 
         public static Version MaxVersion { get; } = null;
 

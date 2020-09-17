@@ -1139,6 +1139,10 @@ namespace MediaBrowser.Api.Playback.Hls
                 {
                     args += " " + gopArg;
                 }
+                else if (codec.IndexOf("rkmpp", StringComparison.OrdinalIgnoreCase) != -1)
+                {
+                    args += " -hls_flags split_by_time" + gopArg;
+                }
                 else
                 {
                     args += " " + keyFrameArg + gopArg;

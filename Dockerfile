@@ -1,10 +1,9 @@
 ARG DOTNET_VERSION=3.1
 
 FROM node:alpine as web-builder
-ARG JELLYFIN_WEB_VERSION=v10.6.4
 RUN apk add curl git zlib zlib-dev autoconf g++ make libpng-dev gifsicle alpine-sdk automake libtool make gcc musl-dev nasm python \
- && curl -L https://github.com/jellyfin/jellyfin-web/archive/${JELLYFIN_WEB_VERSION}.tar.gz | tar zxf - \
- && cd jellyfin-web-* \
+ && git clone --single-branch --branch rockchip https://github.com/jaja123456789/jellyfin-web.git jellyfin-web \
+ && cd jellyfin-web \
  && yarn install \
  && mv dist /dist
 

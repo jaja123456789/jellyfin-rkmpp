@@ -40,8 +40,8 @@ RUN apt-get update \
    openssl \
    locales \
  && apt-get install --no-install-recommends --no-install-suggests -y autoconf automake build-essential cmake debhelper fakeroot git-core libass-dev libfreetype6-dev libsdl2-dev libtool libva-dev libvdpau-dev libvorbis-dev libxcb1-dev libxcb-shm0-dev libxcb-xfixes0-dev pkg-config texinfo wget zlib1g-dev \
- && wget http://ftp.debian.org/debian/pool/main/n/nasm/nasm_2.14.02-1_arm64.deb \
- && dpkg -i nasm_2.14.02-1_arm64.deb \
+ && wget http://ftp.debian.org/debian/pool/main/n/nasm/nasm_2.14-1_arm64.deb \
+ && dpkg -i nasm_2.14-1_arm64.deb \
  && wget http://ftp.debian.org/debian/pool/main/y/yasm/yasm_1.3.0-2+b1_arm64.deb \
  && dpkg -i yasm_1.3.0-2+b1_arm64.deb \
  && echo "deb http://www.deb-multimedia.org stretch main non-free" >> /etc/apt/sources.list \

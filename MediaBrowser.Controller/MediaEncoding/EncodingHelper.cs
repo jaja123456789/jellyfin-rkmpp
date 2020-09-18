@@ -519,27 +519,26 @@ namespace MediaBrowser.Controller.MediaEncoding
                 {
                     arg.Append("-hwaccel videotoolbox ");
                 }
-            }
-            else if (state.IsVideoRequest
-                  && string.Equals(encodingOptions.HardwareAccelerationType, "rkmpp", StringComparison.OrdinalIgnoreCase))
-            {
-                var videoDecoder = GetHardwareAcceleratedVideoDecoder(state, encodingOptions);
-                var outputVideoCodec = GetVideoEncoder(state, encodingOptions);
+				
+				if (state.IsVideoRequest
+					&& string.Equals(encodingOptions.HardwareAccelerationType, "rkmpp", StringComparison.OrdinalIgnoreCase))
+				{
 
-                var hasTextSubs = state.SubtitleStream != null && state.SubtitleStream.IsTextSubtitleStream && state.SubtitleDeliveryMethod == SubtitleDeliveryMethod.Encode;
+					var hasTextSubs = state.SubtitleStream != null && state.SubtitleStream.IsTextSubtitleStream && state.SubtitleDeliveryMethod == SubtitleDeliveryMethod.Encode;
 
-                if (!hasTextSubs)
-                {
-                    // While using QSV encoder
-                    if ((outputVideoCodec ?? string.Empty).IndexOf("rkmpp", StringComparison.OrdinalIgnoreCase) != -1)
-                    {
-                        // While using QSV decoder
-                        if ((videoDecoder ?? string.Empty).IndexOf("rkmpp", StringComparison.OrdinalIgnoreCase) != -1)
-                        {
-                            arg.Append("-drm 1 ");
-                        }
-                    }
-                }
+					if (!hasTextSubs)
+					{
+						// While using QSV encoder
+						if ((outputVideoCodec ?? string.Empty).IndexOf("rkmpp", StringComparison.OrdinalIgnoreCase) != -1)
+						{
+							// While using QSV decoder
+							if ((videoDecoder ?? string.Empty).IndexOf("rkmpp", StringComparison.OrdinalIgnoreCase) != -1)
+							{
+								arg.Append("-drm 1 ");
+							}
+						}
+					}
+				}
             }
 
             arg.Append("-i ")
@@ -2168,7 +2167,7 @@ namespace MediaBrowser.Controller.MediaEncoding
             if ((state.DeInterlace("h264", true)
                 || state.DeInterlace("avc", true)
                 || state.DeInterlace("h265", true)
-                || state.DeInterlace("hevc", true))&& !isRkmppEncoder)
+                || state.DeInterlace("hevc", true))&& !isRkmppH264Encoder)
             {
                 var deintParam = string.Empty;
                 var inputFramerate = videoStream?.RealFrameRate;

@@ -73,7 +73,7 @@ RUN mkdir -p $FFMPEG_COMPILE_DIR $FFMPEG_SOURCES $LIBAOM_SOURCES $MPP_SOURCES $F
  && chmod 755 ${LIBAOM_BUILD}/aom.pc && cp ${LIBAOM_BUILD}/aom.pc ${PKG_CONFIG_PATH}
  
 RUN cd ${MPP_SOURCES} \
- && if [ ! -d mpp ]; then git clone https://github.com/rockchip-linux/mpp.git ; fi \
+ && if [ ! -d mpp ]; then git clone --single-branch --branch develop https://github.com/Caesar-github/mpp.git ; fi \
  && cd mpp \
  && git pull \
  && cmake -DRKPLATFORM=ON -DHAVE_DRM=ON \

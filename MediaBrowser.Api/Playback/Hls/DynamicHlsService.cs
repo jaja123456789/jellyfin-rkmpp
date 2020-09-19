@@ -1089,6 +1089,12 @@ namespace MediaBrowser.Api.Playback.Hls
             // {
             //     args += " -mpegts_m2ts_mode 1";
             // }
+			
+			if (string.Equals(codec, "h264_rkmpp", StringComparison.OrdinalIgnoreCase)
+				|| string.Equals(codec, "hevc_rkmpp", StringComparison.OrdinalIgnoreCase))
+			{
+				args += " -bsf:v dump_extra=freq=e";
+			}
 
             // See if we can save come cpu cycles by avoiding encoding
             if (EncodingHelper.IsCopyCodec(codec))
